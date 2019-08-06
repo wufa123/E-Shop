@@ -7,6 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-hello
+  <a href="ToMyCenter">跳转</a>
 </body>
+  
 </html>
