@@ -15,11 +15,14 @@
 </head>
 <body>
 <div class="soubg">
+
         <div class="sou fl">
             <div class="s_city_b">
-                <span>送货至：四川</span>
+               
             </div>
         </div>
+        
+        
         <div class="fr top_right">
             <div class="fl">
                 你好!请<a href="#">登录</a>
