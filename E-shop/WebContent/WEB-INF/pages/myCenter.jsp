@@ -1,5 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+<%@ page language="java" contentType="text/html; charset=UTF-8" import="java.util.*"
     pageEncoding="UTF-8"%>
+<%@ page import="com.eshop.entity.User" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 
@@ -16,26 +17,22 @@
 <body>
 <div class="soubg">
 
-        <div class="sou fl">
-            <div class="s_city_b">
-               
-            </div>
-        </div>
-        
-        
         <div class="fr top_right">
             <div class="fl">
-                你好!请<a href="#">登录</a>
-                <a href="#" style="color:#ff4e00;">免费注册</a>&nbsp;|&nbsp;<a href="#">我的订单</a>&nbsp;|
+                <span><%
+                    User user= (User) request.getSession().getAttribute("user");
+                    out.print(user.getUserName());
+                %>${user.userName}</span>
+
             </div>
             <ul class="ss">
                 <li class="ss_list">
-                    <a href="#">收藏夹</a>
+                    <a href="#">首页</a>
                 </li>
                 <li class="ss_list">
                     <a href="#">客户服务</a>
 
-                    <div class="ss_list_bg">
+                    <div class="ss_list_bg" style="line-height: 60px;text-align: center">
                         <div class="ss_list_c">
                             <ul>
                                 <li><a href="#">包裹跟踪</a></li>
@@ -46,25 +43,90 @@
                             </ul>
                         </div>
                     </div>
-                </li>
-                <li class="ss_list">
-                    <a href="#">网站导航</a>
-                </li>
+                </li>               
             </ul>
-            <span class="fl">|&nbsp;关注我们：</span>
-                <span class="s_sh">
-                    <a href="#" class="sh1">新浪</a>
-                    <a href="#" class="sh2">微信</a>
-                </span>
+    
                 <span class="fr">|&nbsp;
-                    <a href="#">手机版&nbsp;
-                        <img src="images/s_tel.png" align="absmiddle"/>
-                    </a>
+                    <a href="#" id="getOut">退出登陆 </a>
                 </span>
         </div>
     </div>
-   
+    
+    <div class="jumbotron" style="margin-left:100px;margin-right:100px;margin-top:30px;border: 1px solid orangered;background: orange;height: 150px">
+
+         <div class="top" style="margin-top: -60px">
+
+         <div class="logo">
+             <a href="#">
+                 <img src="images/logo.png"/>
+             </a>
+         </div>
+
+          <div class="i_car" >
+                 <div class="car_t" >购物车</div>
+          </div>
+             <h2 style="line-height: 150px;margin-left: 50%">个人中心</h2>
+         </div>
+    </div>
+
+
+
+   <!--左侧导航栏-->
+  <div>
+      <ul class="nav nav-pills nav-stacked .nav-justified" style="background: orange;margin-top: 230px;margin-left: 100px">
+          <li style="line-height: 40px;text-align: center;font-size: larger">
+              <a href="MyCenterOne" target="showFrame">个人信息</a>
+              <a href="MyCenterOne" target="showFrame">我的订单</a>
+              <a href="MyCenterOne" target="showFrame">我的购物车</a>
+              <a href="MyCenterOne" target="showFrame">我的钱包</a>
+              <a href="MyCenterOne" target="showFrame">我的评价</a>
+              <a href="MyCenterOne" target="showFrame">修改登陆密码</a>
+              <% if(user.getUserType().equals("用户")){
+                  out.print("<a href=\"MyCenterOne\" target=\"showFrame\">申请开店</a>");
+              }
+              else {
+                  out.print("<a href=\"MyCenterOne\" target=\"showFrame\">管理店铺</a>");
+              }%>
+
+          </li>
+      </ul>
+  </div>
+
+<iframe id="showFrame" name="showFrame" style="width:1090px;height: 500px;margin-left: 330px;margin-top: -15px;border:medium none">
+    <div>
+        <img src="images/b1.png" style="margin-left: 200px"/>
+        <span>用户名：</span>
+    </div>
+</iframe>
+
 </body>
  <script src="js/jquery-3.4.1.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>
+
+<script>
+    $(function () {
+        $("#getOut").click(function () {
+            if (confirm('确认退出账户？')) {
+                window.location.href="index.jsp";
+            }
+        })
+    })
+</script>
+
+<script>
+    $(function () {
+
+        function updateUser(){
+            console.log("updateuser is run");
+            $post("UpdateUser",$("edit_form").serialize(),function (data) {
+
+            });
+        }
+
+
+        // $post("Recommend",function (data) {
+        //
+        // });
+    })
+</script>
 </html>
