@@ -80,7 +80,7 @@
               <a href="MyCenterOne" target="showFrame">我的购物车</a>
               <a href="MyCenterOne" target="showFrame">我的钱包</a>
               <a href="MyCenterOne" target="showFrame">我的评价</a>
-              <a href="MyCenterOne" target="showFrame">修改登陆密码</a>
+              <a href="#" data-toggle="modal" data-target="#updatepwdDialog" target="showFrame">修改密码</a>
               <% if(user.getUserType().equals("用户")){
                   out.print("<a href=\"MyCenterOne\" target=\"showFrame\">申请开店</a>");
               }
@@ -99,18 +99,93 @@
     </div>
 </iframe>
 
+<!-- 修改密码-->
+<div class="modal fade" id="updatepwdDialog" tabindex="-1" role="dialog"
+     aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header" style="background: orange">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title" id="myModalLabel">修改密码</h4>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal" id="update_pwd">
+                    <div class="form-group">
+                        <label for="oldpwd" class="col-sm-2 control-label">原密码</label>
+                        <div class="col-sm-10">
+                            <input type="password" class="form-control" id="oldpwd" placeholder="原密码" name="oldpwd">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="newpwd" class="col-sm-2 control-label">新密码</label>
+                        <div class="col-sm-10">
+                            <input type="password" class="form-control" id="newpwd" placeholder="新密码" name="newpwd">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="newpwd2" class="col-sm-2 control-label">确认密码</label>
+                        <div class="col-sm-10">
+                            <input type="password" class="form-control" id="newpwd2" placeholder="新密码" name="newpwd2">
+                        </div>
+                    </div>
+                    <span id="pwdTip"></span>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                <button type="button" class="btn btn-primary" style="background: orange" onclick="updatePwd()">保存修改</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 </body>
  <script src="js/jquery-3.4.1.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>
 
 <script>
-    $(function () {
+
+        function updatePwd(){
+            var oldPwd = $("#oldpwd").val();
+            var newPwd = $("#newpwd").val();
+            var newPwd2 = $("#newpwd2").val();
+            var pwdTip = document.getElementById("pwdTip");
+            var reg=/^(?![A-Z]+$)(?![a-z]+$)(?!\d+$)\S{6,20}$/;
+            if (oldPwd.length==0){
+                pwdTip.innerHTML="请输入原密码";
+                return;
+            } else if (newPwd.length==0||newPwd2.length==0) {
+                pwdTip.innerHTML="请输入新密码";
+                return;
+            }else if(newPwd!=newPwd2){
+                pwdTip.innerHTML="新密码不一致";
+                return;
+            }else if(!reg.test(newPwd)){
+                pwdTip.innerHTML="密码必须为6-20位数字和字母组成，首位不能为数字";
+                return;
+            } else{
+              pwdTip.innerHTML="";  
+            }
+            
+            $.post("UpdatePwd",$("#update_pwd").serialize(),function (data) {
+                if (data==0){
+                    pwdTip.innerHTML="原密码错误";
+                } else{
+                    alert("修改密码成功");
+                    window.location.reload();
+                }
+            });
+        }
+
+
         $("#getOut").click(function () {
             if (confirm('确认退出账户？')) {
                 window.location.href="index.jsp";
             }
-        })
-    })
+        });
+
 </script>
 
 <script>

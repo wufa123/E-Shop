@@ -14,4 +14,15 @@ public class UpdateUserInfo implements UpdateUserService {
         uinfo.updateUserInfo(user);
 
     }
+
+    @Override
+    public int checkUserName(String userName) {
+        UpdateUserInfoDao uinfo = new UpdateUserInfoDao();
+        return uinfo.checkUserName(userName);
+    }
+
+    @Override
+    public void updateUserPwd(String newPwd, int userId) {
+
+    }
 }

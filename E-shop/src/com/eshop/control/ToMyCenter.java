@@ -40,6 +40,7 @@ public class ToMyCenter extends HttpServlet {
 		user.setUserId(1);
 		user.setUserName("无法");
         user.setUserType("用户");
+        user.setUserPassword("123456");
 		request.getSession().setAttribute("user",user);
 		request.getRequestDispatcher("WEB-INF/pages/myCenter.jsp").forward(request, response);
 

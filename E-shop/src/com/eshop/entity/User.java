@@ -12,7 +12,7 @@ public class User {
     private int userId;
     private String userName;
     private String userPassword;
-    private int userPhone;
+    private long userPhone;
     private String userTrueName;
     private String userAddress;
     private String userLevel;
@@ -46,11 +46,11 @@ public class User {
         this.userPassword = userPassword;
     }
 
-    public int getUserPhone() {
+    public long getUserPhone() {
         return userPhone;
     }
 
-    public void setUserPhone(int userPhone) {
+    public void setUserPhone(long userPhone) {
         this.userPhone = userPhone;
     }
 

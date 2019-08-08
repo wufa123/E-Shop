@@ -111,14 +111,16 @@
                         <div class="form-group">
                             <label for="edit_userName" class="col-sm-2 control-label">用户名</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" id="edit_userName" placeholder="用户名" name="userName" value="${user.userName}">
+                                <input type="text" class="form-control"  id="edit_userName" placeholder="用户名" name="userName" value="${user.userName}" onblur="checkUserName()">
+                                <span id="userNameTip"></span>
                             </div>
                         </div>
 
                         <div class="form-group">
                             <label for="edit_userTrueName" class="col-sm-2 control-label">真实姓名</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" id="edit_userTrueName" placeholder="真实姓名" name="userTrueName" value="${user.userTrueName}">
+                                <input type="text" class="form-control" id="edit_userTrueName" placeholder="真实姓名"  name="userTrueName" value="${user.userTrueName}">
+                                <span id="userTrueNameTip"></span>
                             </div>
                         </div>
 
@@ -126,6 +128,7 @@
                             <label for="edit_userPhone" class="col-sm-2 control-label">移动电话</label>
                             <div class="col-sm-10">
                                 <input type="text" class="form-control" id="edit_userPhone" placeholder="移动电话" name="userPhone" value="${user.userPhone}">
+                                <span id="userPhoneTip"></span>
                             </div>
                         </div>
 
@@ -133,6 +136,7 @@
                             <label for="edit_userAddress" class="col-sm-2 control-label">收货地址</label>
                             <div class="col-sm-10">
                                 <input type="text" class="form-control" id="edit_userAddress" placeholder="收货地址" name="userAddress" value="${user.userAddress}">
+
                             </div>
                         </div>
                     </form>
@@ -144,12 +148,66 @@
             </div>
         </div>
     </div>
+
+
+
 </body>
 <script src="js/jquery-3.4.1.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
-<script>
+<script type="text/javascript">
+           function checkUserName() {
+           var userName = document.getElementById("edit_userName").value;
+           $.ajax({
+               type:"get",
+               url:"UpdateUser",
+               data:{"userName":userName},
+               success:function (data) {
+                   if (data==0){
+                       document.getElementById("userNameTip").innerHTML="该用户名已存在";
+                       return;
+                   }else{
+                       document.getElementById("userNameTip").innerHTML="";
+                   }
+               }
+           });
+       }
+
+
+
         function updateUser(){
-            console.log("updateuser is run");
+           var userTrueName = $("#edit_userTrueName").val();
+           var userPhone = $("#edit_userPhone").val();
+           var userTrueNameTip = document.getElementById("userTrueNameTip");
+           var userPhoneTip = document.getElementById("userPhoneTip");
+           var regex =/^[\u4E00-\u9FA5A-Za-z0-9]{1,20}$/;
+           var regex2 = /^1[3|4|5|8][0-9]\d{4,8}$/;
+           if (userTrueName.length==0){
+               userTrueNameTip.innerHTML="真实姓名不能为空";
+               return;
+           }else if (!regex.test(userTrueName)) {
+               userTrueNameTip.innerHTML="不符合格式";
+               return;
+           }else{
+               userTrueNameTip.innerHTML="";
+           }
+
+           if (userPhone<1){
+               userPhoneTip.innerHTML="电话不能为空";
+               return;
+           } else if (!regex2.test(userPhone)) {
+               userPhoneTip.innerHTML="不符合格式";
+               return;
+           }else{
+               userPhoneTip.innerHTML="";
+           }
+
+           if ($("#edit_userName").val()==null) {
+               document.getElementById("userNameTip").innerHTML="用户名不能为空";
+               return;
+           }else {
+               document.getElementById("userNameTip").innerHTML="";
+
+           }
            $.post("UpdateUser",$("#edit_form").serialize(),function (data) {
                alert("修改成功");
                window.location.reload();
