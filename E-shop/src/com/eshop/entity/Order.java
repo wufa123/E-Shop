@@ -2,21 +2,21 @@ package com.eshop.entity;
 
 public class Order {
 	
-	private int orderId;	//¶©µ¥±àºÅ
-	private int goodsId;	//ÉÌÆ·id
-	private String goodsName;	//ÉÌÆ·Ãû³Æ
-	private int goodNum;	//ÉÌÆ·ÊıÁ¿
-	private Integer orderMoney;	//¶©µ¥½ğ¶î
-	private String orderTime;	//¶©µ¥Ê±¼ä
-	private String orderState;	//¶©µ¥×´Ì¬
-	private int userId;	//ÓÃ»§id
-	private String userTrueName; 	//ÓÃ»§ÕæÊµĞÕÃû
-	private int userPhone;	//ÓÃ»§µç»°
-	private String userAddress;	//ÓÃ»§µØÖ·
-	private int storeId;	//ÉÌÆÌid
-	private String storeName;	//µêÆÌÃû³Æ
+	private int orderId;	//è®¢å•ç¼–å·
+	private int goodsId;	//å•†å“id
+	private String goodsName;	//å•†å“åç§°
+	private int goodNum;	//å•†å“æ•°é‡
+	private Integer orderMoney;	//è®¢å•é‡‘é¢
+	private String orderTime;	//è®¢å•æ—¶é—´
+	private String orderState;	//è®¢å•çŠ¶æ€×´Ì¬
+	private int userId;	//ç”¨æˆ·id
+	private String userTrueName; 	//ç”¨æˆ·çœŸå®å§“å
+	private int userPhone;	//ç”¨æˆ·ç”µè¯
+	private String userAddress;	//ç”¨æˆ·åœ°å€Ö·
+	private int storeId;	//åº—é“ºid
+	private String storeName;	//åº—é“ºåç§°
 	
-	//·â×°ºÍ¹¹Ôì·½·¨
+	//å°è£…å’Œæ„é€ 
 	public Order(){
 		
 	}

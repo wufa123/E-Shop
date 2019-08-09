@@ -1,4 +1,4 @@
-package com.eshop.dao.UserDao;
+package com.eshop.dao;
 
 import com.alibaba.druid.pool.DruidPooledConnection;
 import com.eshop.entity.User;

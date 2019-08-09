@@ -1,6 +1,6 @@
 package com.eshop.service.UpdateUserImpl;
 
-import com.eshop.dao.UserDao.UpdateUserInfoDao;
+import com.eshop.dao.UpdateUserInfoDao;
 import com.eshop.entity.User;
 import com.eshop.service.UpdateUserService;
 
