@@ -40,7 +40,7 @@ public class UpdateUser extends HttpServlet {
          UpdateUserService uus = new UpdateUserInfo();
          uus.updateUserInfo(user);
          request.getSession().setAttribute("user",user);
-         log.debug("control执行完毕");
+
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

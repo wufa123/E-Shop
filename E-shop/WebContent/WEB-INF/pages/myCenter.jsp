@@ -79,7 +79,7 @@
               <a href="MyCenterOne" target="showFrame">我的订单</a>
               <a href="MyCenterOne" target="showFrame">我的购物车</a>
               <a href="MyCenterOne" target="showFrame">我的钱包</a>
-              <a href="MyCenterOne" target="showFrame">我的评价</a>
+              <a href="toMyRemark" target="showFrame">我的评价</a>
               <a href="#" data-toggle="modal" data-target="#updatepwdDialog" target="showFrame">修改密码</a>
               <% if(user.getUserType().equals("用户")){
                   out.print("<a href=\"MyCenterOne\" target=\"showFrame\">申请开店</a>");
