@@ -1,13 +1,16 @@
 package com.eshop.entity;
 
+import java.math.BigDecimal;
+import java.util.Date;
+
 public class Order {
 	
 	private int orderId;	//订单编号
 	private int goodsId;	//商品id
 	private String goodsName;	//商品名称
 	private int goodNum;	//商品数量
-	private Integer orderMoney;	//订单金额
-	private String orderTime;	//订单时间
+	private BigDecimal orderMoney;	//订单金额
+	private Date orderTime;	//订单时间
 	private String orderState;	//订单状态״̬
 	private int userId;	//用户id
 	private String userTrueName; 	//用户真实姓名
@@ -21,7 +24,7 @@ public class Order {
 		
 	}
 	
-	public Order(int orderId,int goodsId,String goodsName,int goodNum,Integer orderMoney,String orderTime,String orderState,
+	public Order(int orderId,int goodsId,String goodsName,int goodNum,BigDecimal orderMoney,Date orderTime,String orderState,
 					int userId,String userTrueName,int userPhone,String userAddress,int storeId,String storeName) {
 		this.orderId = orderId;
 		this.goodsId = goodsId;
@@ -79,19 +82,19 @@ public class Order {
 		this.goodNum = goodNum;
 	}
 
-	public Integer getOrderMoney() {
+	public BigDecimal getOrderMoney() {
 		return orderMoney;
 	}
 
-	public void setOrderMoney(Integer orderMoney) {
+	public void setOrderMoney(BigDecimal orderMoney) {
 		this.orderMoney = orderMoney;
 	}
 
-	public String getOrderTime() {
+	public Date getOrderTime() {
 		return orderTime;
 	}
 
-	public void setOrderTime(String orderTime) {
+	public void setOrderTime(Date orderTime) {
 		this.orderTime = orderTime;
 	}
 
